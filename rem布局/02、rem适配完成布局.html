@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* html{
+      font-size: 15px;
+    } */
+    .box1{
+      font-size: 2rem;
+      border: 1px solid red;
+      height: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">我是文字</div>
+  <div class="box1">我是文字</div>
+</body>
+<script>
+let el = document.querySelector('html');
+el.style.fontSize = el.clientWidth/20 + 'px';
+window.addEventListener('resize',()=>{
+  el.style.fontSize = el.clientWidth/20 + 'px';
+})
+// 前提条件，项目所有设计图宽度都是750，
+// 1. 如果屏幕宽度750px
+  // 1rem = 750/20 px
+// 2. 如果设计图中有个元素恰好就是750px
+// 应该给这个元素设置多少rem？    20rem
+// 3. 如果设计图中有个元素敲好是 50px
+// 应该给这个元素设置多少rem？   50/37.5
+
+// 结论：
+// 当我为某个元素添加尺寸的时候，只需要让 尺寸=测量的px / 37.5 rem
+</script>
+</html>
