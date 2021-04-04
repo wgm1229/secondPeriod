@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    
+    <button v-on:click="msg='你好，尤玉玺'">按钮{{msg}}</button>
+    <!-- 1. 不使用计算属性实现 字符串反转-->
+    <div>
+      {{msg.split('').reverse().join('')}}
+    </div>
+    <div>
+      {{msg.split('').reverse().join('')}}
+    </div>
+    <div>
+      {{msg.split('').reverse().join('')}}
+    </div>
+    --------------------------------------------
+    <!-- 2. 使用computed，完成字符串反转 -->
+    <div>{{rMsg}}</div>
+    <div>{{rMsg}}</div>
+    <div>{{rMsg}}</div>
+  </div>
+</body>
+<script>
+  new Vue({
+    el:'#app', //指定容器
+    data:{ //提供数据
+      msg:'Hello Vue'
+    },
+    computed:{
+      rMsg(){ //计算属性
+        return this.msg.split('').reverse().join('')
+      }
+    }
+  })
+</script>
+</html>

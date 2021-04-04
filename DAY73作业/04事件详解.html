@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            border: 1px solid #000;
+            padding: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="num++">按钮{{num}}</button>
+
+        <button v-on:click="handleNum(10)">num+10</button>
+
+        <div v-on:click="handleBorder($event, 'hello')">查看Event</div>
+
+        <div class="box" v-on:click="handleBox">
+            <div class="box" v-on:click="handleBox">
+                <div class="box" v-on:click.stop="handleBox"></div>
+            </div>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 100
+            },
+            methods: {
+                handleNum(n) {
+                    this.num += n
+                },
+                handleBorder(e, str) {
+                    console.log(e, str)
+                    e.target.style.border = '1px solid red'
+                },
+                handleBox(){
+                    alert(111)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

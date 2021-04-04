@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+        .box.active{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <!-- 带标签的文本渲染 -->
+        <div v-html="'tags'"></div>
+
+        <div class="box" v-bind:class="isActive?'active':''"></div>
+    
+        <div class="box" v-if='isShow'>条件渲染if</div>
+        <div class="box" v-else>条件渲染else</div>
+        <div class="box" v-show="isShow">v-show</div>
+
+        <!-- 列表渲染 -->
+        <ul>
+            <li v-for="(item,index) in human" v-bind:key="index">
+                姓名:{{item.name}},
+                年龄:{{item.age}},
+                技能:
+                <span v-for="(itm,idx) in item.skill">
+                    {{itm}}
+                </span>
+            </li>
+        </ul>
+
+        <!-- 事件的绑定 -->
+        <button v-on:click="handleBg">控制box的背景颜色</button>
+        <button v-on:click="handleShow">控制box的显示隐藏</button>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'Hello Vue',
+                tags:'<h2>带标签的文本渲染</h2>',
+                isActive:true,
+                isShow:true,
+                human:[
+                    {name:'张三',age:18,skill:['玩游戏']},
+                    {name:'李四',age:20,skill:['吃饭','打豆豆']},
+                    {name:'王五',age:50,skill:['看书','睡觉','喝茶']}
+                ]
+            },
+            methods:{
+                handleBg:function(){
+                    console.log(123)
+                    this.isActive = !this.isActive
+                },
+                handleShow(){
+                    this.isShow = !this.isShow
+                }
+            }
+        })
+    </script>
+</body>
+</html>

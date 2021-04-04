@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+        let obj = {
+            name:'张三丰',
+            age:100,
+            skill:'闭关'
+        }
+        // let keys = Object.keys(obj)
+        // console.log(keys)
+
+        function defineReactive(myObj, key, val){
+            Object.defineProperty(myObj, key,{
+            get:function(){
+                console.log('我知道你想获取obj的'+key)
+                return val
+            },
+            set:function(){
+                console.log(`我知道你想设置obj的${key}`)
+            }
+        })
+    }
+        Object.keys(obj).forEach((key)=>{
+            defineReactive(obj,key,obj[key])
+        })
+
+
+
+        let n = obj.name
+        let a = obj.age
+        obj.skill = '再闭关'
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #app{
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
+        ul,ol,li{
+            list-style: none;
+        }
+        ul{
+            display: flex;
+            width: 200px;
+            height: 30px;
+            border: 1px solid #000;
+        }
+        ul>li{
+            width: 50%;
+            height: 100%;
+            background: #ccc;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            line-height: 30px;
+        }
+        ol{
+            flex: 1;
+            border: 1px solid red;
+            position: relative;
+        }
+        ol>li{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            line-height: 170px;
+            background-color: orange;
+
+        }
+        ul>li.active{
+            background-color: orange;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-bind:class="isShow?'active':''" v-on:click="handelTab()">1</li>
+            <li v-bind:class="!isShow?'active':''" v-on:click="handelTab(false)">2</li>
+        </ul>
+        <ol>
+            <li v-if="isShow">1</li>
+            <li v-else>2</li>
+        </ol>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                isShow:true
+            },
+            methods:{
+                handelTab(bool=true){
+                    this.isShow = bool
+                }
+            }
+        })
+    </script>
+</body>
+</html>

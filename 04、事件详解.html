@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .box{
+      border: 1px solid #333;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 1.简单数据交互，不提供事件函数的情况下，触发data变化 -->
+    <button v-on:click="num++">按钮{{num}}</button>
+
+    <!-- 2. 定义事件函数，但不传递参数 -->
+
+    <!-- 3. 定义事件函数，并传递参数 -->
+    <button v-on:click="handleNum(10)">按需修改num</button>
+
+    <!-- 4. 定义事件函数，并传递$event，(查看事件对象e)
+          凡是能够通过数据驱动视图实现的交互，都不要使用DOM操作
+    -->
+    <div v-on:click="handleBorder($event,'Hello')">这是div</div>
+
+    <!-- 5. 事件修饰符 -->
+    <!-- .stop可以阻止事件传播冒泡 -->
+    <div class="box" v-on:click="handleBox">
+      <div class="box" v-on:click="handleBox">
+        <div class="box" v-on:click.stop="handleBox"></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script>
+  new Vue({
+    el:'#app', //指定容器
+    data:{ //提供数据
+      num:100
+    },
+    methods: {
+      handleNum(i){
+        this.num += i
+      },
+      handleBorder(ev,str){
+        console.log(ev,str);
+        ev.target.style.border = '1px solid red'
+        //target指向当前div，target下面存储了当前标签的属性和属性值
+      },
+      handleBox(){
+        alert(1111)
+      }
+    },
+  })
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="msg='你好, 生活'">按钮{{msg}}</button>
+
+        <div>
+            {{msg.split('').reverse().join('')}}
+        </div>
+        <div>
+            {{msg.split('').reverse().join('')}}
+        </div>
+        <div>
+            {{msg.split('').reverse().join('')}}
+        </div>
+
+        --------------------------------------------
+        <div>{{rMsg}}</div>
+        <div>{{rMsg}}</div>
+        <div>{{rMsg}}</div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'Hello Vue'
+            },
+            computed:{
+                rMsg(){
+                    return this.msg.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

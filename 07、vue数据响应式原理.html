@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // Object.keys   //提取一个对象里面的键名
+  // Object.defineProperties   //允许我们为某个对象设置get set方法，
+  // 一旦该对象被外部事件操作的时候，能够触发get或set
+  let obj = {
+    name:'张三丰',
+    age:100,
+    skill:'闭关'
+  }
+  let keys = Object.keys(obj)
+  // console.log(keys);
+  // Object.defineProperty
+  function defineReactive(myObj,key,val){
+    Object.defineProperty(myObj,key,{
+      get:function(){
+        console.log('我知道，你想获取obj的'+key);
+        return val
+      },
+      set:function(){
+        console.log(`我知道，你想为${key}设置新的值`);
+      }
+    })
+  }
+
+  Object.keys(obj).forEach((key)=>{
+    defineReactive(obj,key,obj[key])
+  })
+
+  let n = obj.name
+  let a = obj.age
+  obj.skill = '再闭关'
+  
+  
+  
+</script>
+</html>
