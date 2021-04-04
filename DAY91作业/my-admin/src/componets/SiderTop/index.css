@@ -1,0 +1,13 @@
+.siderHeader{
+  width: 100%;
+  height: 70px;
+  font-size: 30px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 70px;
+}
+img{
+  display: inline-block;
+}

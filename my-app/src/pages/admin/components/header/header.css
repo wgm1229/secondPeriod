@@ -1,0 +1,10 @@
+.aheader {
+  height: 80px;
+  line-height: 80px;
+  color: #fff;
+  font-size: 28px;
+}
+.aheader img {
+  width: 50px;
+  height: 50px;
+}
