@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="msg" v-on:keyup.enter="handleSend">
+    <select>
+      <option value="1">按下Enter发送</option>
+      <option value="2">按下Ctrl+Enter发送</option>
+    </select>
+    <div class="cont">
+      <p v-for="(item,index) in msglist">
+        {{item}}
+      </p>
+    </div>
+  </div>
+</body>
+<script>
+  var vm = new Vue({
+    data:{
+      msg:'Hello', //同步input的value值
+      msglist:[
+        '你好',
+        '在敲代码'
+      ]
+    },
+    methods: {
+      handleSend(){
+        this.msglist.push(this.msg)
+        this.msg = ''
+      }
+    },
+  })
+  vm.$mount('#app')
+</script>
+</html>

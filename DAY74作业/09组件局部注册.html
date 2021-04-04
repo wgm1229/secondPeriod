@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <button>-</button>
+            123
+            <button>+</button>
+        </div>
+        <div>
+            <button>-</button>
+            123
+            <button>+</button>
+        </div>
+        ----------------------------
+        <my-num></my-num>
+        <my-num></my-num>
+        <my-hello></my-hello>
+    </div>
+    --------Vue app1---------------
+    <div id="app1">
+        <my-num></my-num>
+
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app',
+            components: {
+                'my-num': {
+                    data() {
+                        return {
+                            num: 1
+                        }
+                    },
+                    template: `<div>
+                        <button v-on:click="num--">-</button>
+                        {{num}}
+                        <button v-on:click="num++">+</button>
+                    </div>`
+                },
+                'my-hello':{
+                    template:'<h1>hello组件</h1>'
+                }
+            },
+            data: {
+
+            },
+            methods: {
+
+            }
+        })
+        new Vue({
+            el: '#app1'
+        })
+    </script>
+</body>
+
+</html>

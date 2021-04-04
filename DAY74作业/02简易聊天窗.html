@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cont{
+            width: 300px;
+            height: 400px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <button v-on:click="handleSend">发送</button>
+        <div class="cont">
+            <p v-for="(item,index) in msglist">
+                {{item}}
+            </p>
+        </div>
+    </div>
+    
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'hello',
+                msglist:[
+                    '你好',
+                    '在敲代码'
+                ]
+            },
+            methods:{
+                handleSend(){
+                    this.msglist.push(this.msg)
+                    this.msg = ''
+                }
+            }
+        })
+    </script>
+</body>
+</html>

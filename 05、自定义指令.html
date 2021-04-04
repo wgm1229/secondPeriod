@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  
+</head>
+<body>
+  <div id="app">
+    <div v-hello="'blue'">这是div</div>
+    <div v-hello="'red'">这是div</div>
+  </div>
+</body>
+<script>
+  // 1. 通过v-hello指令为元素添加红色边框
+  Vue.directive('hello',{
+    inserted(el,binding,vnode){
+      console.log(el,binding,vnode);
+      let {value} = binding //ES6 解构赋值
+      // let value = binding.value //ES6 解构赋值
+      el.style.border = `5px solid ${value}`
+    }
+  })
+  new Vue({
+    el:'#app',
+    data:{
+    },
+    methods: {
+      
+    },
+  })
+</script>
+</html>

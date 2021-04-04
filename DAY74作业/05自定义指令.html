@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-hello="'blue'">div内容</div>
+    </div>
+    
+    <script src="./vue.js"></script>
+    <script>
+        Vue.directive('hello',{
+            inserted(el,binding,vnode){
+                console.log(el,binding,vnode)
+                let {value} = binding
+                // console.log(value)
+                el.style.border = `1px solid ${value}`
+            }
+        })
+
+        new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>

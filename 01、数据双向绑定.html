@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div>{{msg}}</div>
+    <!-- 1. 数据单向绑定 -->
+    <input type="text" v-bind:value="msg">
+
+    <!-- 2. 数据双向绑定 -->
+    <input type="text" v-model="msg">
+
+    <input type="checkbox" v-model="isCheck">
+    {{isCheck}}
+
+    <select v-model="developer">
+      <option value="1">前端开发</option>
+      <option value="2">后端开发</option>
+    </select>
+    {{developer}}
+  </div>
+</body>
+<script>
+  var vm = new Vue({
+    data:{
+      msg:'Hello',
+      isCheck:false,
+      developer:1
+    }
+  })
+  vm.$mount('#app')
+  // setTimeout(()=>{
+  //   vm.$data.msg = '你好'
+  // },2000)
+</script>
+</html>

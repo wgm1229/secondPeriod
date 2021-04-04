@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <button>-</button>
+      123
+      <button>+</button>
+    </div>
+    <div>
+      <button>-</button>
+      123
+      <button>+</button>
+    </div>
+    ----------------------------
+    <my-num></my-num>
+    <my-num></my-num>
+  </div>
+  ------------下面是另外一个Vue实例空间--------------
+  <div id="app1">
+    <my-num></my-num>
+  </div>
+</body>
+<script>
+  Vue.component('my-num',{ //自治区
+    data(){ //避免data发生对象引用问题，从而互相干扰
+      return {
+        num:1
+      }
+    },
+    template:`<div>
+                <button v-on:click="num--">-</button>
+                {{num}}
+                <button v-on:click="num++">+</button>
+              </div>`
+  })
+  new Vue({  //国家
+    el:'#app',
+    data:{
+      
+    },
+    methods: {
+      
+    },
+  })
+  new Vue({ 
+    el:'#app1'
+  })
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <button v-on:click="isShow=!isShow">按钮</button>
+    <div v-mshow="isShow">这是div</div>
+  </div>
+</body>
+<script>
+  
+  new Vue({
+    el:'#app',
+    data:{
+      isShow:false
+    },
+    directives:{  //局部指令
+      'mshow':{
+        inserted(el,binding){ //只有在指令被调用的时候执行一次
+          let {value} = binding; //提取指令参数
+          let disp = value ? 'block' : 'none';
+          el.style.display = disp
+        },
+        update(el,binding) { //监听指令参数变化，做出实时响应
+          console.log(1111);
+          let {value} = binding; //提取指令参数
+          let disp = value ? 'block' : 'none';
+          el.style.display = disp
+        }
+      }
+    },
+    methods: {
+      
+    },
+  })
+</script>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button v-on:click="handleAdd">测试浅监听</button>
+    <button v-on:click="handleDeep">测试深监听</button>
+    <div v-for="(item,index) in human">
+      {{item}}
+    </div>
+  </div>
+</body>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      human:[
+        {name:'张三丰',age:100},
+        {name:'灭绝师太',age:50},
+      ]
+    },
+    watch:{ //监听
+      // human(){ //浅监听，监听human数据包的变化，执行内部代码
+      //   console.log('监听到了human的变化');
+      // },
+      human:{ //深监听
+        handler(){ //处理函数，监听到变化后，执行什么逻辑
+          console.log('监听到了human的变化');
+        },
+        deep:true
+      }
+    },
+    methods: {
+      handleAdd(){
+        this.human.push({
+          name:'张无忌',
+          age:18
+        })
+      },
+      handleDeep(){
+        this.human[0].name = '张无忌'
+      }
+    },
+  })
+</script>
+</html>

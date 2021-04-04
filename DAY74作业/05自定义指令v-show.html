@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="isShow=!isShow">div内容</button>
+        <!-- <div v-show="isShow">v-show</div> -->
+        <div v-mshow="isShow">mshow</div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                isShow: false
+            },
+            directives: {
+                'mshow': {
+                    inserted(el, binding, vnode) {
+                        console.log(111)
+                        let { value } = binding
+                        let disp = value ? 'block' : 'none'
+                        el.style.display = disp
+                    },
+                    update(el,binding){
+                        let { value } = binding
+                        let disp = value ? 'block' : 'none'
+                        el.style.display = disp
+                    }   
+                }
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

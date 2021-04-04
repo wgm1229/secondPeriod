@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+
+        <input type="text" v-bind:value="msg">
+
+        <input type="checkbox" v-model="isCheck">{{isCheck}}
+
+        <select v-model="developer">
+            <option value="1">前端开发</option>
+            <option value="2">后端开发</option>
+        </select>{{developer}}
+    </div>
+    
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            // el:'#app',
+            data:{
+                msg:'hello',
+                isCheck:false,
+                developer:1
+            },
+            methods:{
+                
+            }
+        })
+        vm.$mount('#app')
+        setInterval(() => {
+            vm.$data.msg = '你好'
+        }, 2000);
+    </script>
+</body>
+</html>
