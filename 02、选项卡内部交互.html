@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      border: 1px solid #333;
+    }
+    .tab-cont li{
+      display: inline-block;
+      padding: 10px 20px;
+      background: #d8d8d8;
+    }
+    .tab-cont .active{
+      background: orange;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="tab-cont">
+      <ul>
+        <li>菜单1</li>
+        <li>菜单1</li>
+        <li>菜单1</li>
+      </ul>
+    </div>
+    ------------------------
+    <my-tab v-bind:tabdata="list"></my-tab>
+    <my-tab v-bind:tabdata="scoretab"></my-tab>
+  </div>
+</body>
+<script>
+  Vue.component('my-tab',{
+    props:['tabdata','num'], //参数，组件特有
+    data() {
+      return {
+        idx:0
+      }
+    },
+    template:`<div class="tab-cont">
+                <ul>
+                  <li 
+                    v-for="(item,index) in tabdata" 
+                    v-bind:class="idx==index?'active':''" 
+                    v-on:click="handleTab(index)"
+                  >
+                    {{item}}
+                  </li>
+                </ul>
+              </div>`,
+    methods:{
+      handleTab(i){
+        this.idx = i
+      }
+    }
+  })
+  new Vue({
+    el:'#app',
+    data:{
+      list:[
+        '用户管理',
+        '配置管理',
+        '角色管理'
+      ],
+      scoretab:[
+        '所有学员',
+        '及格学员',
+        '不及格学员',
+        '优秀学员',
+        'VIP学员'
+      ]
+    },
+    methods: {
+      
+    },
+  })
+</script>
+</html>

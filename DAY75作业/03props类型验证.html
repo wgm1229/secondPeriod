@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <my-comp
+      str="hello"
+      v-bind:num="200"
+      v-bind:must="true"
+      v-bind:even="4"
+    ></my-comp>
+  </div>
+</body>
+<script>
+  Vue.component('my-comp',{
+    props:{
+      str:{
+        type:String
+      },
+      num:{
+        type:Number,
+        default:100
+      },
+      must:{
+        type:Boolean,
+        required:true
+      },
+      even:{
+        type:Number,
+        validator(val){
+          return val%2 == 0
+        }
+      }
+    },
+    template:`<div>
+                <h4>{{str}}</h4>
+                <h4>{{num}}</h4>
+                <h4>{{must}}</h4>
+                <h4>{{even}}</h4>
+              </div>`,
+    
+  })
+  new Vue({
+    el:'#app',
+    data:{
+      
+    },
+    methods: {
+    },
+    
+  })
+  
+</script>
+</html>

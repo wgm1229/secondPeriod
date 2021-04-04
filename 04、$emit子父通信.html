@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>这是父级空间的num: {{num}} </h1>
+    <my-btn @btn-click="fatherFn"></my-btn>
+  </div>
+</body>
+<script>
+  Vue.component('my-btn',{
+    template:`<button @click="childFn">修改父级的num</button>`,
+    methods: {
+      childFn() {
+        console.log('子组件内部事件');
+        this.$emit('btn-click',10)
+        // this.$emit('btn-click',{  //传递的参数数据包比较灵活的
+        //   id:'233',
+        //   name:'张三丰'
+        // })
+      }
+    },
+  })
+  new Vue({
+    el:'#app',
+    data:{
+      num:100
+    },
+    methods: {
+      fatherFn(n){
+        this.num+=n
+      }
+    },
+  })
+</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    ul,
+    li {
+      list-style: none;
+    }
+
+    .tab-cont ul {
+      display: flex;
+
+    }
+
+    .tab-cont li {
+      padding: 10px 30px;
+      margin: 5px 5px;
+      background-color: #ccc;
+    }
+
+    .tab-cont .active {
+      background-color: orange;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="tab-cont">
+      <ul>
+        <li>菜单1</li>
+        <li>菜单1</li>
+        <li>菜单1</li>
+      </ul>
+    </div>
+    ------------------------------
+    <my-tab v-bind:tabdata="list"></my-tab>
+  </div>
+</body>
+<script>
+  Vue.component('my-tab', {
+    props: ["tabdata"],
+    template: `<div class="tab-cont">
+      <ul>
+        <li v-for="(item,index) in tabdata">
+          {{item}}
+        </li>
+      </ul>
+    </div>`
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      list: [
+        '用户管理',
+        '配置管理',
+        '角色管理'
+      ]
+    },
+    methods: {
+
+    },
+  })
+</script>
+
+</html>

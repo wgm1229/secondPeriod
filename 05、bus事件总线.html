@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <comp-a></comp-a>
+    <comp-b></comp-b>
+  </div>
+</body>
+<script>
+  var bus = new Vue()  //bus事件总线
+  Vue.component('comp-a',{
+    template:`<div>
+                我是A组件
+                <comp-a-child></comp-a-child>
+              </div>`
+  })
+  Vue.component('comp-a-child',{
+    template:`<div>
+                我是A组件的孩子
+                <button @click="handleSend">给好朋友发糖</button>
+              </div>`,
+    methods: {
+      handleSend() {
+        bus.$emit('give-a-candy',6)  //【1】向事件总线发送信号
+      }
+    },
+
+  })
+  Vue.component('comp-b',{
+    template:`<div>
+                我是B组件
+                <comp-b-child></comp-b-child>
+              </div>`
+  })
+  Vue.component('comp-b-child',{
+    data() {
+      return {
+        num: 0
+      }
+    },
+    template:`<div>我是B组件的孩子,有{{num}}颗糖果</div>`,
+    created () { //生命周期函数，组件被创建之后就会自动执行
+      bus.$on('give-a-candy',(n)=>{ //【2】监听事件总线的自定义事件
+        let intro = `b组件的孩子收到了${n}颗糖`
+        console.log(intro);
+        this.num = n;
+      })
+    },
+  })
+  
+  new Vue({
+    el:'#app',
+    data:{
+      
+    },
+    methods: {
+      
+    },
+  })
+</script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div ref="myDiv">我是div</div>
+    <input ref="myInput" type="text">
+    <my-num ref="myNum"></my-num>
+    <button @click="handleFn">按钮</button>
+  </div>
+</body>
+<script>
+  Vue.component('my-num',{
+    data() {
+      return {
+        num: 110
+      }
+    },
+    template:'<div>{{num}}</div>'
+  })
+  new Vue({
+    el:'#app',
+    data:{
+      
+    },
+    methods: {
+      handleFn(){
+        console.log(this.$refs);
+        let {myDiv,myInput,myNum} = this.$refs
+        myDiv.style.border = '10px solid #444';
+        myInput.value = '新内容'
+        myNum.num = 233;
+      }
+    },
+  })
+</script>
+</html>

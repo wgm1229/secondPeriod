@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <my-comp 
+      str="hello" 
+      v-bind:num="666" 
+      v-bind:must="true" 
+      v-bind:even="4"
+    >
+    </my-comp>
+  </div>
+</body>
+<script>
+  Vue.component('my-comp',{
+    props: {
+      str: { //要求传递字符串
+        type: String
+      },
+      num:{
+        type:Number, //数字类型
+        default:100 //默认值
+      },
+      must:{
+        type:Boolean,
+        required:true  //必须要传递这个must参数
+      },
+      even:{ //限定用户传递偶数
+        type:Number,
+        validator(val){  //验证器 val代表even这个参数
+          return val%2 == 0   //只有val余2时才能通过
+        }
+      }
+    },
+    template:`<div>
+                <h4>{{str}}</h4>
+                <h4>{{num}}</h4>
+                <h4>{{must}}</h4>
+                <h4>{{even}}</h4>
+              </div>`
+  })
+  new Vue({
+    el:'#app',
+    data:{
+      
+    },
+    methods: {
+      
+    },
+  })
+</script>
+</html>

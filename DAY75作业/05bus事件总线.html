@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <comp-a></comp-a>
+    <comp-b></comp-b>
+  </div>
+</body>
+<script>
+  var bus = new Vue()
+  Vue.component('comp-a',{
+    template:`<div>
+                我是A组件
+                <comp-a-child></comp-a-child>
+              </div>`
+  })
+  Vue.component('comp-a-child',{
+    template:`<div>
+                我是A组件的孩子
+                <button @click="handleSend">向B的孩子发糖</button>
+              </div>`,
+    methods:{
+      handleSend(){
+        bus.$emit('give-candys', 6)
+      }
+    }
+  })
+  Vue.component('comp-b',{
+    template:`<div>
+                我是B组件
+                <comp-b-child></comp-b-child>
+              </div>`
+  })
+  Vue.component('comp-b-child',{
+    template:`<div>
+                我是B组件的孩子
+                我收到{{num}}颗糖
+              </div>`,
+    data(){
+      return {
+        num:0
+      }
+    },
+    created () {
+      bus.$on('give-candys',(n)=>{
+        let intro = `B组件的孩子收到了${n}颗糖`
+        console.log(intro)
+        this.num = n
+      })
+    }
+  })
+  new Vue({
+    el:'#app',
+    data:{
+      
+    },
+    methods: {
+      
+    },
+  })
+</script>
+</html>
