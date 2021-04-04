@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <div id="root"></div>
+  <script type="text/babel">
+
+    class App extends React.Component {
+
+      constructor() {
+        super();
+        this.state = {
+          counter: 0
+        };
+      }
+
+      appClick = () => {
+        console.log('--------appClick---------');
+        const { counter } = this.state;
+        console.log(this.state.counter);
+        this.setState({
+          counter: counter + 1
+        })
+        console.log(this.state.counter); // 会输出2还是0？
+      }
+
+      spanClick = () => {
+        const { counter } = this.state;
+        this.setState({
+          counter: counter + 1
+        })
+        console.log(this.state.counter);
+        this.setState({
+          counter: counter + 2
+        })
+        console.log(this.state.counter);
+      }
+
+      render() {
+        return (
+          <div className="App" onClick={(event) => this.appClick(event)}>
+            <span className="btn" onClick={(event) => this.spanClick(event)}>
+              点击{this.state.counter}
+    </span>
+          </div>
+        )
+      };
+    }
+
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+
+// 打印结果。before与after相同即为“异步”，否则为同步
+// componentDidMount before: 0
+// componentDidMount after: 0
+// setTimeout before: 1
+// setTimeout after: 2
+// spanClick before: 2
+// spanClick after: 2
+// addEventListener btn2Click before: 4
+// addEventListener btn2Click after: 5
+
+
+  </script>
+
+
+</body>
+
+</html>
