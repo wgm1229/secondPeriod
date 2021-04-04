@@ -1,0 +1,9 @@
+.header-top,.header-bttom{
+  height: 40px;
+  line-height: 40px;
+  text-align: right;
+  background-color: #fff;
+}
+.header-top{
+  border-bottom: 1px solid green;
+}

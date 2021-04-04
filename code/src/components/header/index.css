@@ -1,0 +1,12 @@
+.admin-header {
+  background: #fff;
+}
+.admin-header-top,
+.admin-header .admin-header-bottom {
+  height: 40px;
+  line-height: 40px;
+  text-align: right;
+}
+.admin-header-top {
+  border-bottom: 1px solid #000;
+}
