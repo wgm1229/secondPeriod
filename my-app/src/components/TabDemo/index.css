@@ -1,0 +1,10 @@
+li{
+  list-style: none;
+  display: inline-block;
+  padding: 10px 30px;
+  background: #d8d8d8;
+}
+li.active{
+  background: orange;
+  color: #FFF
+}

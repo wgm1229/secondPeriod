@@ -1,0 +1,18 @@
+ul,li{
+    list-style: none;
+}
+ul{
+    display: flex;
+}
+li{
+    width: 100px;
+    height: 30px;
+    background-color: #ccc;
+    margin-right: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+li.active{
+    background-color: orange;
+}
