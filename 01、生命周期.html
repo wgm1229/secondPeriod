@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button @click="num++">按钮{{num}}</button>
+  </div>
+</body>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      num:100
+    },
+    beforeCreate () {
+      console.log('开始创建vue实例');
+    },
+    created () { //使用频率最高，一般用以加载远程数据
+      console.log('vue实例创建完毕');
+    },
+    beforeMount () {
+      console.log('数据即将初始化渲染');
+    },
+    mounted () {
+      console.log('数据渲染完毕');
+    },
+    beforeUpdate () {
+      console.log('数据即将更新');
+    },
+    updated () {
+      console.log('数据更新完毕');
+    },
+  })
+</script>
+</html>

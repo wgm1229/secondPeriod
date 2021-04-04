@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="animate.css">
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      background: orange;
+      margin:auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button @click="isShow=!isShow">按钮</button>
+    <transition 
+      leave-active-class="animate__animated animate__backOutRight" 
+      enter-active-class="animate__animated animate__backInLeft" 
+      appear
+      @after-leave="handleLeave"
+    >
+      <div class="cont" v-if="isShow"></div>
+    </transition>
+  </div>
+</body>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      isShow:true
+    },
+    methods: {
+      handleLeave(){
+        alert('元素已经出场')
+      }
+    },
+  })
+</script>
+</html>

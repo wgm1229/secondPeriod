@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <select v-model="level1">
+      <option :value="-1">请选择省份</option>
+      <option v-for="(item,index) in list" :value="index"
+      >
+        {{item.Name}}
+      </option>
+    </select>value值：{{level1}}
+    <select v-model="level2">
+      <option :value="-1">请选择城市</option>
+      <option v-for="(item,index) in city" :value="index">
+        {{item.Name}}
+      </option>
+    </select>value值：{{level2}}
+    <select  v-model="level3">
+      <option :value="-1">请选择区县</option>
+      <option v-for="(item,index) in region" :value="index">
+        {{item.Name}}
+      </option>
+    </select>
+  </div>
+</body>
+<script src="./city.js"></script>
+<script>
+  console.log(arr)
+  new Vue({
+    el:'#app',
+    data:{
+      list:arr,
+      level1:-1,
+      level2:-1,
+      level3:-1
+    },
+    computed: {
+      city(){
+        let {level1} = this
+        return level1 = level1 == -1 ? [] : this.list[level1].City 
+      },
+      region(){
+        let {level2} = this
+        return level2 = level2 == -1 ? [] : this.list[level2].City 
+      }
+    },
+    methods: {
+
+    },
+    watch:{
+      level1(){
+        this.level2 = this.level3 = -1
+      },
+      level2(){
+        this.level3 = -1
+      }
+    }
+  })
+</script>
+</html>

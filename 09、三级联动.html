@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 300px;
+      width: 300px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <select v-model="lv1">
+      <option :value="-1">请选择省份</option>
+      <option 
+        v-for="(item,index) in list" 
+        :value="index"
+      >
+        {{item.Name}}
+      </option>
+    </select>
+    <span>省份下标:{{lv1}}</span>
+
+    <select v-model="lv2">
+      <option :value="-1">请选择城市</option>
+      <option 
+        v-for="(item,index) in city" 
+        :value="index"
+      >
+        {{item.Name}}
+      </option>
+    </select>
+    <span>城市下标:{{lv2}}</span>
+
+    <select v-model="lv3">
+      <option :value="-1">请选择区县</option>
+      <option v-for="(item,index) in region" :value="index">
+        {{item.Name}}
+      </option>
+    </select>
+  </div>
+</body>
+<script src="./city.js"></script>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      list:arr,
+      lv1:-1, //控制被选中的省份
+      lv2:-1, //控制被选中的城市
+      lv3:-1
+    },
+    watch: {
+      lv1(){
+        this.lv2 = this.lv3 = -1
+      },
+      lv2(){
+        this.lv3 = -1
+      }
+    },
+    computed: {
+      city() { //根据lv1实时提取对应省份的城市数据包
+        let {lv1} = this;
+        return lv1==-1 ? [] : this.list[lv1].City
+      },
+      region(){ //根据lv1与lv2实时提取对应区县的数据包
+        let {lv2} = this;
+        return lv2==-1 ? [] : this.city[lv2].Region 
+      }
+    },
+    methods: {
+      
+    },
+  })
+</script>
+</html>

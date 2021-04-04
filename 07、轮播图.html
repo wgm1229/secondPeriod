@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="animate.css">
+  <script src="./vue.js"></script>
+  <style>
+    .cont{
+      height: 500px;
+      border: 1px solid #333;
+      position: relative;
+      overflow: hidden;
+    }
+    ul{
+      padding: 0;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    img{
+      width: 100%;
+    }
+    li{
+      list-style: none;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      border: 1px solid #333;
+      margin: 0 10px;
+    }
+    li.active{
+      background: orange
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="cont">
+      <transition
+        enter-active-class="animate__animated animate__fadeIn animate__faster"
+        leave-active-class="animate__animated animate__fadeOut animate__faster"
+      >
+        <img 
+          v-for="(item,index) in imgs" 
+          :src="item.image[0]" 
+          v-if="index==num" 
+          :key="index"
+        >
+      </transition>
+      <ul>
+        <li 
+          v-for="(item,index) in 4" 
+          :class="index==num?'active':''" 
+          @click="num=index"
+        >
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      imgs:[],
+      num:0  //标志被激活元素下标
+    },
+    created () {
+      let url = `https://shopapi.smartisan.com/product/home`;
+      fetch(url).then((res)=>{
+        return res.json()
+      }).then((res)=>{
+        this.imgs = res.data.home_carousel
+      })
+    },
+  })
+</script>
+</html>
